@@ -86,6 +86,12 @@ const App = () => {
     }
   }
 
+  const handleLogout = async (event) =>{
+    event.preventDefault()
+    setUser(null)
+    windows.localStorage.removeItem('loggedNoteappUser')
+  }
+
   const loginForm = () => {
     const hideWhenVisible = { display: loginVisible ? 'none' : '' }
     const showWhenVisible = { display: loginVisible ? '' : 'none' }
@@ -128,6 +134,7 @@ const App = () => {
       {!user && loginForm()}
       {user && <div>
         <p>{user.name} logged in</p>
+        <button onClick={handleLogout}>log out</button>
         {noteForm()}
       </div>
       }
